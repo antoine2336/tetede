@@ -1,0 +1,61 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<table style="width: 100%; text-align:center;font-family: Arial, Helvetica, sans-serif">
+  <tr>
+    <td style="width:50%;">
+      <table style="width:100%;">
+        <tr>
+          <td></td>
+          <td *ngFor="let duree of durees" class="cel" style="background-color: darkgrey;">{{duree}} ans</td>
+        </tr>
+        <tr *ngFor="let emprunt of emprunts">
+          <td class="cel" style="background-color: darkgrey;">{{emprunt}} euros</td>
+          <td *ngFor="let duree of durees">
+            <div *ngIf="mensualite(emprunt, taux, duree*12) > maximum" class="cel" style="background-color: firebrick">{{mensualite(emprunt, 1.2, duree*12) }}</div>
+            <div *ngIf="mensualite(emprunt, taux, duree*12) <= maximum" class="cel" style="background-color: darkgreen">{{mensualite(emprunt, 1.2, duree*12) }}</div>  
+          </td>
+        </tr>
+      </table>
+  </td>
+  <td style="width:50%;">
+    <table style="width:100%;">
+      <tr>
+        <td style="padding:20px;">Taux</td>
+		<td>1</td>
+        <td><input style="width:300px;" type="range" min="100" max="150" (input)="tauxUp($event)" value="{{taux.toFixed(2)*100}}"></td>
+		<td>1.5</td>
+      </tr>
+      <tr>
+		<td></td>
+		<td></td>
+        <td style="text-align:center;">{{taux.toFixed(2)}}</td>
+		<td></td>
+      </tr>
+      <tr>
+          <td style="padding:20px;">Apport</td>
+		  <td>0</td>
+          <td><input style="width:300px;" type="range" min="0" max="500000" (input)="apportUp($event)" value="{{apport}}"></td>
+		  <td>500 000</td>
+        </tr>
+		 <tr>
+		<td></td>
+		<td></td>
+        <td style="text-align:center;">{{apport}}</td>
+		<td></td>
+      </tr>
+        <tr>
+            <td style="padding:20px;">Revenus</td>
+			<td>0</td>
+            <td><input style="width:300px;" type="range" min="0" max="10000" (input)="revenusUp($event)" value="{{revenus}}"></td>
+			<td>10 000</td>
+          </tr>
+		   <tr>
+		<td></td>
+		<td></td>
+        <td style="text-align:center;">{{revenus}}</td>
+		<td></td>
+      </tr>
+      </table>
+    </td>
+  </tr>
+</table>
